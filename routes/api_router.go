@@ -1,6 +1,7 @@
 package routes
 
 import (
+	middle "main/middleware"
 	"net/http"
 )
 
@@ -8,7 +9,7 @@ import (
 func APIRouter() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.Handle("/", http.NotFoundHandler())
-	mux.Handle("/home", http.HandlerFunc(HomeHandler))
-	mux.Handle("/about", http.HandlerFunc(AboutHandler))
+	mux.Handle("/home", middle.ExampleMiddle(http.HandlerFunc(HomeHandler)))
+	mux.Handle("/about", middle.ExampleMiddlewareStack(http.HandlerFunc(AboutHandler)))
 	return mux
 }

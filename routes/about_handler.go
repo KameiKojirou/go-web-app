@@ -1,7 +1,13 @@
 package routes
 
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
+)
 
 func AboutHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("About"))
+	http.Header.Set(w.Header(), "Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{
+		"message": "About Page",
+	})
 }

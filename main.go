@@ -1,14 +1,9 @@
 package main
 
 import (
-	"embed"
 	"main/routes"
 	"net/http"
 )
-
-//go:embed frontend/dist/*
-//go:embed frontend/dist/**/*
-var frontendFS embed.FS
 
 func main() {
 	mux := http.NewServeMux()
